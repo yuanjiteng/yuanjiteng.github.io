@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/yuanjiteng/yuanjiteng.github.io.git",
-  "author": "Henry Zhu <38650110+HenryZhuHR@users.noreply.github.com>",
+  "author": "Jiteng Yuan <38650110+yuanjiteng@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
     "docs:dev": "vuepress dev docs",
