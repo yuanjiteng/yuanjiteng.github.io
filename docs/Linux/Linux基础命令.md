@@ -16,15 +16,13 @@
 
 ● ­R （或 ­r ）：递归的执行（操作目录相关的命令）
 
-## 基础命令工具和语法
-
-### 文件管理命令
+## 文件管理命令
 
 <img src="./imgs\file_manager1.png" alt="img=50" style="zoom:80%;" />
 
 <img src="./imgs/file_manager1.png" alt="im" style="zoom:80%;" />
 
-**查看文件夹**
+### 查看文件夹 ls
 
 ```html
 ## ls [-aAdfFhilnrRSt] file|dir
@@ -32,7 +30,7 @@
 -d ：仅列出目录本身
 -l ：以长数据串行列出，包含文件的属性与权限等等数据
 ```
-**创建、删除文件夹**
+### 创建、删除文件夹 mkdir
 
 ```text
 ## mkdir [-mp] 目录名称
@@ -44,7 +42,7 @@
 rmdir [-p] 目录名称
 -p ：递归删除目录
 ```
-**复制文件夹**
+### 复制文件夹 cp
 
 ```html
 cp [-adfilprsu] source destination
@@ -56,7 +54,7 @@ cp [-adfilprsu] source destination
 -u ：destination 比 source 旧才更新 destination，或 destination 不存在的情况下才复制
 --preserve=all ：除了 -p 的权限相关参数外，还加入 SELinux 的属性, links, xattr 等也复制了
 ```
-**修改文件权限**
+### 修改文件权限 chmod
 
 可以将一组权限用数字来表示，此时一组权限的 3 个位当做二进制数字的位，从左到右每个位的权值为 4、2、1，即每个权限对应的数字权值为 r : 4、w : 2、x : 1。
 
@@ -73,7 +71,7 @@ cp [-adfilprsu] source destination
 - -：移除权限
 - =：设定权限
 ```
-**查看文件**
+### 查看文件 cat more less head tail
 
 cat 直接查看从头往后全部
 
@@ -89,7 +87,7 @@ tail 文件最后几行
 
 od 以字符或者十六进制的形式显示二进制文件
 
-**文件搜索**
+### 文件搜索 whereis locate find
 
 whereis 
 
@@ -111,7 +109,7 @@ find 可以使用文件的属性和权限进行搜索(更加精确)
 example: find . -name "shadow*"
 ```
 
-**文件打包与压缩**
+### 文件打包与压缩 tar zip gzip bzip
 
 ```html
 $ tar [-z|-j|-J] [cv] [-f 新建的 tar 文件] filename...  ==打包压缩
@@ -158,41 +156,57 @@ bzmore 查看 bzip2 压缩包内文件的内容
 
 ar 创建、修改、解包归档文件（类似于 tar ）
 
-### **正则表达式 grep** 
-
-
+## 系统管理命令
 
 ### 系统进程状态ps
 
+UNIX 风格：
 
+● ­e 、 ­A ：显示所有进程 
+
+● ­f ：显示完整的列表模式
+
+● ­w ：宽格式显示（如显示完整的程序路径和名称，不论行长度） 
+
+● BSD 风格（不带 ­ ）：
+
+● a ：显示所有进程 
+
+● u ：以用户为主的格式来显示进程状况
+
+● x ：显示所有程序，不论是否为终端进程（如 X 进程）
+
+● w ：宽格式显示（如显示完整的程序路径和名称）
+
+一般使用 ps aux
 
 ### 虚拟内存统计工具 smstat
 
-### 控制台的流量监控工具vnstat
 
-### 进程监控工具 atop htop
+
+### 控制台的流量监控工具vnstat
 
 ### 内存使用状态 free
 
-## 系统命令工具
+查看内存使用状态
 
 ### 进程间通设施状态ipcs
 
-linux系统运行时长
+### linux系统运行时长
 
-CPU平均负载和磁盘活动iostat
+### CPU平均负载和磁盘活动iostat
 
-监控、收集、和汇报系统活动 Sar
+### 监控、收集、和汇报系统活动 Sar
 
-监控多处理器使用情况 mpstat
+### 监控多处理器使用情况 mpstat
 
-系统管理源调优和基准测量工具 nmon
+### 系统管理源调优和基准测量工具 nmon
 
-密切关注linxu系统glances
+### 密切关注linxu系统glances
 
-查看系统调用strace
+### 查看系统调用strace
 
-## 网络通信
+## 网络通信命令
 
 <img src="imgs/network_com.png" style="zoom:80%;" />
 
@@ -284,10 +298,6 @@ up down 启用禁用网络接口 需要root
 
 ### 网络数据包案分析 tcpdump
 
-### 与其他服务器通信 telnet
-
-
-
 ### 获取实时网络统计信息 iptraf
 
 ### 显示主机上网络接口带宽使用情况 iftop
@@ -298,33 +308,33 @@ up down 启用禁用网络接口 需要root
 
 ## 磁盘参数工具
 
-磁盘卸载umount
+### 磁盘卸载umount
 
-读取、转换并输出数据dd
+### 读取、转换并输出数据dd
 
-文件系统df
+### 文件系统df
 
-磁盘挂载 mount
+### 磁盘挂载 mount
 
 ## 日志监控工具
 
-实时网络日志分析器 CoAccess
+### 实时网络日志分析器 CoAccess
 
-多窗口日志监控MUltiTail
+### 多窗口日志监控MUltiTail
 
-日志分析系统LogWatch/SWatch
+### 日志分析系统LogWatch/SWatch
 
 ## 参数监控工具
 
-监控apache 网络服务器整体性能apachetop
+### 监控apache 网络服务器整体性能apachetop
 
-ftp服务器基本信息 ftptop
+### ftp服务器基本信息 ftptop
 
-IO监控 iotop
+### IO监控 iotop
 
-电量消耗和电源管理 powertop
+### 电量消耗和电源管理 powertop
 
-监控mysql的纯种和性能mytop
+### 监控mysql的纯种和性能mytop
 
-系统运行参数分析 htop/top/atop
+### 系统运行参数分析 htop/top/atop
 
