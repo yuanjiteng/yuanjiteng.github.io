@@ -419,13 +419,49 @@ df -h
 
 lspci
 
-### 其他常用重要命令和工具
+## 其他常用重要命令和工具
 
 ### 正则表达式工具 grep awk
 
-只用于记录简单的
+文件名通配符：
 
+<img src="./imgs/wildcard.png" style="zoom:80%">
 
+shell命令中文件通配和正则表达式样式的区别
+
+**正则表达式的样式需要使用双引号或者单引号**
+
+例如 `grep '[A-Z]*' c[a-c].sql` 在文件中寻找含有大匹配行数写字母的行
+
+基本正则表达式的元字符：
+
+<img src="./imgs/regexp1.png" style="zoom:80%">
+
+<img src="./imgs/regexp2.png" style="zoom:80%">
+
+linux命令中 grep可以和|（管道命令）一起使用
+
+grep命令：打印文件中匹配个样式的行
+
+执行方式：grep [options] pattern [files]
+
+-E 扩展的grep egrep
+
+-f regex-file:从文件中获取正则表达式
+
+-i 不区分大小写
+
+控制输出选项：
+
+-c: 只输出文件中匹配的行数
+
+-l: 只输出内容匹配的文件名
+
+-L 输出内容没有匹配的文件名
+
+-m num: 找到num个就停止
+
+可以使用管道命令套用。
 
 ### 计划定时任务  at crontab
 
@@ -483,7 +519,7 @@ f1 f2 f3 f4 f5 program
 
 使用者也可以将所有的设定先存放在文件中，用 crontab file 的方式来设定执行时间。
 
-### 实例
+**实例**
 
 每一分钟执行一次 /bin/ls：
 
@@ -557,23 +593,40 @@ f1 f2 f3 f4 f5 program
 
 链接：[Linux终端命令神器--Screen命令详解。助力Linux使用和管理 - 云+社区 - 腾讯云 (tencent.com)](https://cloud.tencent.com/developer/article/1844735)
 
-
-
 ### Bash Shell脚本
 
 所有的linux命令都可以在shell脚本中直接执行，主要关于变量部分在此处列出：
 
+变量替代：
 
+<img src="./imgs/bashvar.png" style="zoom:80%">
 
-如何输入外部参数？
+内置变量
 
+<img src="./imgs/bashvar2.png" style="zoom:80%">
 
+如何输入外部参数？也就是上图中所用的命令行参数
+
+假设存在脚本:
+
+```
+[root@Centos7T blogscripts]#cat t1.sh
+#!/bin/bash
+echo "Script name is : $0"
+echo "The 1st parameter is : $1"
+echo "The 2nd parameter is : $2"
+echo "The 3rd parameter is : $3"
+```
+
+使用`bash t1.sh 100 200 300` 运行
+
+但是由于脚本中使用了$1等参数，如果没输入会报错，最好进行一下判断，并抛出由于命令行参数缺失或者不规范产生的异常信息，方便调试。
 
 ### Git版本管理工具
 
 
 
-### RPM包管理工具 yum apt等
+### RPM包管理工具
 
 
 
@@ -581,4 +634,4 @@ f1 f2 f3 f4 f5 program
 
 
 
-### cmake编译工具
+### Cmake编译工具
