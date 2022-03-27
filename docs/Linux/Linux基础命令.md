@@ -18,9 +18,9 @@
 
 ## 文件管理命令
 
-<!-- <img src="./imgs\file_manager1.png" alt="img=50" style="zoom:80%;" /> -->
+<img src="./imgs\file_manager1.png" alt="img=50" style="zoom:80%;" />
 
-<!-- <img src="./imgs/file_manager1.png" alt="im" style="zoom:80%;" /> -->
+<img src="./imgs/file_manager1.png" alt="im" style="zoom:80%;" />
 
 ### 查看文件夹 ls
 
