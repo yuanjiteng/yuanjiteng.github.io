@@ -208,7 +208,7 @@ UNIX 风格：
 
 ## 网络通信命令
 
-<!-- <img src="imgs/network_com.png" style="zoom:80%;" /> -->
+<img src="./imgs/network_com.png" style="zoom:80%;" />
 
 ### 远程登录协议 telnet
 
