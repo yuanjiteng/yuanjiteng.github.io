@@ -1,0 +1,1 @@
+const t={key:"v-05df4e1d",path:"/ComputerNetworks/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.html",title:"",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1648475401e3,contributors:[{name:"yuanjiteng",email:"yuanjiteng@whu.edu.cn",commits:1}]},filePathRelative:"ComputerNetworks/\u8BA1\u7B97\u673A\u7F51\u7EDC.md"};export{t as data};
