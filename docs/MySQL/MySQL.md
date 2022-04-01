@@ -410,6 +410,20 @@ FOR EACH ROW
 
 ## MySQL高级部分
 
+sql底层原理
+
+索引
+
+当表中的数据量达到几十万甚至上百万的时候，SQL的查询花费时间会很长，导致业务超时，因此需要使用索引来加速SQL查询
+
+由于索引也是需要存储索引文件的，因此对于索引的使用也会涉及I/O操作，如果创建过多的索引，使用不当，会造成SQL查询时候，进行大量的无用的磁盘IO操作，降低查询效率，因此掌握良好的索引创建原则非常重要。
+
+
+
+
+
+
+
 架构
 
 索引和调优
@@ -449,3 +463,166 @@ MyCat
 对开源数据库进行二次开发
 
 ## 面试问题
+
+编程技巧：
+
+每个学校答过题的用户平均答题数量情况？
+
+每个：group by 可以按照学校分类（存在每个）
+
+答过题的用户的平均答题数量：  计算每个学校答过题的用户数量 count(distinct(答题id)) 计算每个学校答题数量 count(id),然后除法
+
+两个select联合使用采取 union 联合 （一般存在分别） union会去重 union all不去重
+
+必须会的条件函数 if 和case （存在重命名内容 字段 用于select中）
+
+语法
+
+> Select device_id,if(university = ‘北京大学',’北京大学',’其他大学'）
+
+> as university
+
+> From user_profile
+
+用于对于字段进行更改 增加判断
+
+
+
+> Select
+
+> CASE
+
+> WHEN SCORE = 'A' THEN '优'
+
+> WHEN SCORE = 'B' THEN '良'
+
+> WHEN SCORE = 'C' THEN ‘中'
+
+> ELSE ‘不及格'
+
+> END --注意这里需要加end作为结束
+
+后面也可以group by 他们自己
+
+日期函数
+
+将时间戳转换成日期函数
+
+> select
+
+> from_unixtime(time,'yyyy-MM-dd') as time
+
+> From question_practice_detail
+
+将日期函数转换为时间戳
+
+> select
+
+> from_unixtime('2021-08-01','yyyy-MM-dd') as time
+
+年月日获取
+
+分别为year(),month(),day()。
+
+日期差计算
+
+> select
+
+> datediff('2021-08–09','2021-08-01')
+
+data_sub和data_add函数计算开始如期之后增加或者减少几天之后的日期
+
+> **select**
+
+> **date_sub('2021-08–09',interval 8 day)**
+
+> select
+
+> date_add('2021-08–01',interval 8 day)
+
+想不出来就重新建表，逻辑部分应该最好交个处理器实现
+
+文本函数
+
+length
+
+concat
+
+
+
+就是切片，不支持冒号 但是可以使用嵌套操作实现相关功能
+
+substring_index
+
+select SUBSTRING_INDEX('180,78kg',',','1') as height 按照关键字截取字段 
+
+   如果count是正数，那么就是从左往右数，第N个分隔符的左边的所有内容
+   如果count是负数，那么就是从右往左数，第N个分隔符的右边的所有内容
+
+再不行就直接使用like 搜索
+
+
+
+instr 寻找子串出现的第一个位置
+
+substring 截取 从1开始计数
+
+select substring(‘bacda’,2)
+
+select substring(‘bacda’,2,2)
+
+
+
+窗口函数
+
+row_number()  over partition by 
+
+先分组再排序
+
+ row_number() over (partition by col1 order by col2)
+
+
+
+使用案例：先分组后在分组内部排序 窗口函数
+
+> Select device_id, university,gpa,
+
+> row_number() over (partition by university order by gpa desc) as
+
+> rank. - -desc代表降序排列
+
+> From user_profile
+
+每个再加上最 结果使用这种函数 计算一个rank 然后使用子查询 
+
+`Select device_id,`
+`university,`
+`gpa`
+`From (`
+`Select device_id,`
+`university,`
+`gpa,`
+`row_number() over(partition by university order by gpa) as rk`
+`From user_profile`
+`)a`
+`where rk = 1`
+
+总结一下规律
+
+每一个 group by  distinct
+
+平均 最大 最小 max
+
+排序 order by
+
+多次 查询 union
+
+多表连接 join on  
+
+多次排序 子查询 from select （增加一个flag选项用于判断要不要）
+
+每个最 子查询加上窗口函数
+
+count if功能实现使用 count case( when  then 1 end)
+
+牛客第一层sql刷完。
